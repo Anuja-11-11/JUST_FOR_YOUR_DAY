@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Surprise ❤️</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+    <!-- PAGE 1 -->
+
+    <section id="page1">
+
+        <div id="qrBox">
+
+            <img src="images/qr.png"
+                 id="qrImage">
+
+            <div class="scan-line"></div>
+
+        </div>
+
+        <p class="tap-text">
+            Tap
+            <button id="scanLink" type="button">
+              HERE
+            </button>
+            to Scan the QR
+        </p>
+
+    </section>
+
+    <!-- PAGE 2 -->
+
+    <section id="page2">
+
+        <h1 id="birthdayText">
+
+            Happiest Birthday
+            <span>❤️ Anuja ❤️</span>
+
+        </h1>
+
+        <img src="images/teddy-cake.png"
+             id="teddyImage">
+
+        <div id="questionSection">
+
+            <p>
+
+                Are you excited for what's next?
+
+            </p>
+
+            <div class="btn-container">
+
+                <button id="yesBtn">
+
+                    YES
+
+                </button>
+
+                <button id="noBtn">
+
+                    NO
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+   <!-- =========================
+     PAGE 3 - BALLOON GAME
+========================= -->
+<section id="page3">
+
+    <h2 id="balloonTitle">Pop the Balloons 🎈</h2>
+
+    <div id="balloonWrapper">
+
+        <!-- BALLOON 1 -->
+        <div class="balloon" id="b1">
+            <img src="images/balloon-1.png" alt="balloon1">
+        </div>
+
+        <!-- BALLOON 2 -->
+        <div class="balloon" id="b2">
+            <img src="images/balloon-2.png" alt="balloon2">
+        </div>
+
+        <!-- BALLOON 3 -->
+        <div class="balloon" id="b3">
+            <img src="images/balloon-3.png" alt="balloon3">
+        </div>
+
+        <!-- BALLOON 4 -->
+        <div class="balloon" id="b4">
+            <img src="images/balloon-4.png" alt="balloon4">
+        </div>
+
+        <!-- HIDDEN TEXT -->
+        <div id="hiddenText">
+            <div id="t1"></div>
+            <div id="t2"></div>
+            <div id="t3"></div>
+            <div id="t4"></div>
+        </div>
+
+        <div id="specialMessage">
+            You Are Truly Special Anu... ❤️
+        </div>
+
+    </div>
+
+    <!-- MESSAGE BELOW BALLOONS -->
+    <div id="nextMsg">
+        Some little things are waiting for you...<br>
+        Please tap to explore them.
+    </div>
+
+</section>
+
+<!-- =========================
+     PAGE 4 - CELEBRATION
+========================= -->
+<section id="page4">
+
+    <!-- BIRTHDAY MUSIC -->
+    <audio id="bgMusic" src="audio/happy-birthday.mp3"></audio>
+
+    <!-- MAIN IMAGE -->
+    <img id="cakeImg"
+         src="images/cake-candles-on.png"
+         alt="cake">
+
+    <!-- GUEST VIDEO -->
+    <video id="guestVideo"
+           style="display:none;"
+           playsinline>
+        <source src="videos/guest.mp4" type="video/mp4">
+    </video>
+
+    <!-- GUEST REVEAL AREA -->
+    <div id="guestReveal"></div>
+
+    <!-- CAKE CUTTING VIDEO -->
+    <video id="cakeCutVideo"
+           style="display:none;"
+           playsinline>
+        <source src="videos/cake-cutting.mp4" type="video/mp4">
+    </video>
+
+    <!-- TEXT -->
+    <p id="cakeText">
+        Make a wish ❤️<br>
+        Tap to blow the candles
+    </p>
+
+</section>
+
+<section id="page5">
+
+    <!-- INTRO -->
+    <div id="gameIntro">
+
+        <h2>
+            Wait... the party isn't over yet! 🎉
+        </h2>
+
+        <br>
+
+        <p>
+            We've prepared a little game especially for you.
+            <br><br>
+            Are you ready? ✨
+        </p>
+
+        <br>
+
+        <small>
+            Tap to continue... ❤️
+        </small>
+
+    </div>
+
+    <!-- TITLE SCREEN -->
+    <div id="revengeIntro">
+
+        <h2 id="revengeTitle">
+            🎯 OFFICIAL REVENGE SESSION 🎯
+        </h2>
+
+        <p id="revengeSubtitle">
+            Target Locked:<br>
+            ADITYA 😜
+        </p>
+
+    </div>
+
+    <div id="gameRules">
+
+    <h2>🎯 Revenge Session Rules 🎯</h2>
+
+    <p>
+        You now have 5 chances
+        <br>
+        to take revenge for all the times
+        <br>
+        I have irritated you 😜
+        <br><br>
+        Swipe to throw a dart 🎯
+    </p>
+
+    <br>
+
+    <small>
+        Tap to start the mission ❤️
+    </small>
+
+    </div>
+
+    <!-- GAME -->
+    <div id="gameArea">
+
+        <div id="scoreBoard">
+
+            <div>
+                Darts Left:
+                <span id="dartsLeft">5</span>
+            </div>
+
+            <div>
+                Score:
+                <span id="score">0</span>
+            </div>
+
+        </div>
+        
+        <img src="images/dart.png" id="readyDart">
+
+        <div id="dartBoardContainer">
+
+            <img
+                src="images/dart-with-photo.png"
+                id="dartBoard">
+
+        </div>
+
+        <div id="reactionText"></div>
+
+    </div>
+
+    <!-- RESULT -->
+    <div id="revengeReport">
+
+        <h2>
+            🎯 REVENGE REPORT 🎯
+        </h2>
+
+        <p id="finalScoreText"></p>
+
+        <p id="painLevelText"></p>
+
+        <p>
+            I promise i won't
+            <br>
+            irritate you more...
+        </p>
+
+        <br>
+
+        <small>
+            Tap to continue...
+        </small>
+
+    </div>
+
+    <!-- QUIZ CONGRATULATIONS PAGE -->
+
+<div id="quizIntro">
+
+    <div class="quizBigTitle">
+        Congratulations!
+    </div>
+
+    <p class="quizText">
+
+        You have successfully attacked Aditya
+        <br>
+        multiple times with sharp flying objects 🎯😂
+
+        <br><br>
+
+        I hope that made you feel better.
+
+        <br><br>
+
+        Get ready for one last challenge...
+
+    </p>
+
+</div>
+
+<!-- QUIZ WELCOME PAGE -->
+
+<div id="quizWelcome">
+
+    <div class="quizShowTitle">
+        Welcome to the Quiz Show! ✨
+    </div>
+
+    <p class="quizText">
+
+        Every answer you give
+        <br>
+        will bring you one step closer
+        <br>
+        to your rewards ❤️
+
+    </p>
+
+    <small class="tapBegin">
+        Tap to begin...
+    </small>
+
+</div>
+
+</section>
+
+<!-- =========================
+     QUIZ SECTION
+========================= -->
+
+<section id="quizPage" style="display:none;">
+
+    <!-- QUESTION 1 -->
+    <div class="quizScreen active" id="q1">
+
+        <h2 class="questionTitle">
+            How are you feeling right now?
+        </h2>
+
+        <div class="options">
+
+            <button class="quizOption">Happy 😊</button>
+
+            <button class="quizOption">Excited 🤩</button>
+
+            <button class="quizOption">Emotional 🥹</button>
+
+            <button class="quizOption">All of the Above ❤️</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 2 -->
+
+    <div class="quizScreen" id="q2">
+
+        <h2 class="questionTitle">
+            Do you like the birthday party?<br><br>
+            If yes, which part of the party did you like the most?
+        </h2>
+
+        <textarea
+            class="quizInput"
+            placeholder="Write your answer here..."></textarea>
+
+        <button class="nextQuestion">
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 3 -->
+
+    <div class="quizScreen" id="q3">
+
+        <h2 class="questionTitle">
+            What is your birthday wish this year?
+        </h2>
+
+        <textarea
+            class="quizInput"
+            placeholder="Write your answer here..."></textarea>
+
+        <button class="nextQuestion">
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 4 -->
+
+    <div class="quizScreen" id="q4">
+
+        <h2 class="questionTitle">
+            What's your ideal weekend?
+        </h2>
+
+        <div class="options">
+
+            <button class="quizOption">
+                Sleeping 😴
+            </button>
+
+            <button class="quizOption">
+                Traveling ✈️
+            </button>
+
+            <button class="quizOption">
+                Watching Drama 📺
+            </button>
+
+            <button class="quizOption">
+                Eating Good Food 🍕
+            </button>
+
+            <button class="otherBtn">
+                Any Other
+            </button>
+
+        </div>
+
+        <textarea
+            class="otherInput"
+            placeholder="Write your answer..."
+            style="display:none;"></textarea>
+
+        <button
+            class="nextQuestion otherNext"
+            style="display:none;">
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 5 -->
+
+    <div class="quizScreen" id="q5">
+
+        <h2 class="questionTitle">
+            If you could eat only one forever,
+            what would you choose?
+        </h2>
+
+        <div class="options">
+
+            <button class="quizOption">
+                Chicken 🍗
+            </button>
+
+            <button class="quizOption">
+                Mutton Biryani 🍛
+            </button>
+
+            <button class="quizOption">
+                Ice Cream 🍨
+            </button>
+
+            <button class="quizOption">
+                Chocolate 🍫
+            </button>
+
+            <button class="otherBtn">
+                Any Other
+            </button>
+
+        </div>
+
+        <textarea
+            class="otherInput"
+            style="display:none;"
+            placeholder="Write your answer..."></textarea>
+
+        <button
+            class="nextQuestion otherNext"
+            style="display:none;">
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 6 -->
+
+    <div class="quizScreen" id="q6">
+
+        <h2 class="questionTitle">
+            Which superpower would you pick?
+        </h2>
+
+        <div class="options">
+
+            <button class="quizOption">
+                Flying 🦸
+            </button>
+
+            <button class="quizOption">
+                Time Travel ⏳
+            </button>
+
+            <button class="quizOption">
+                Reading Minds 🧠
+            </button>
+
+            <button class="quizOption">
+                Teleportation ⚡
+            </button>
+
+            <button class="otherBtn">
+                Any Other
+            </button>
+
+        </div>
+
+        <textarea
+            class="otherInput"
+            style="display:none;"
+            placeholder="Write your answer..."></textarea>
+
+        <button
+            class="nextQuestion otherNext"
+            style="display:none;">
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUESTION 7 -->
+
+    <div class="quizScreen" id="q7">
+
+        <h2 class="questionTitle">
+            What's something that always makes you happy?<br>
+            <small>(Except BTS 😜)</small>
+        </h2>
+
+        <textarea
+            class="quizInput"
+            placeholder="Write your answer here..."></textarea>
+
+        <button class="nextQuestion">
+            Next ➜
+        </button>
+
+    </div>
+
+    <!-- QUESTION 9 -->
+
+    <div class="quizScreen" id="q9">
+
+        <h2 class="questionTitle">
+            Who is more stubborn?
+        </h2>
+
+        <div class="options">
+
+            <button
+                class="quizOption stubbornOption"
+                data-answer="Anuja">
+                Anuja
+            </button>
+
+            <button
+                class="quizOption stubbornOption"
+                data-answer="Aditya">
+                Aditya
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- POPUP -->
+
+    <div id="stubbornPopup" class="popupOverlay">
+
+        <div class="popupBox">
+
+            <div id="stubbornPopupText"></div>
+
+            <button id="popupNextBtn">
+                Continue ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- QUESTION 13 - FUNNY QUESTION -->
+
+    <div class="quizScreen" id="q13">
+
+        <h2 class="questionTitle">
+            What is my biggest talent? 😂
+        </h2>
+
+        <div class="options">
+
+            <button class="quizOption">
+                Irritating you
+            </button>
+
+            <button class="quizOption">
+                Talking nonsense
+            </button>
+
+            <button class="quizOption">
+                Overthinking everything
+            </button>
+
+            <button class="quizOption">
+                All of the above 😂
+            </button>
+
+        </div>
+
+    </div>
+
+    
+    <!-- QUESTION 14 -->
+
+    <div class="quizScreen" id="q14">
+
+        <h2 class="questionTitle">
+
+            How many stars would you give
+            <br>
+            this surprise? ⭐
+
+        </h2>
+
+        <div class="ratingContainer">
+
+            <div class="ratingLine"></div>
+
+            <div id="ratingStar">
+                ⭐
+            </div>
+
+            <div class="ratingNumbers">
+
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+
+            </div>
+
+        </div>
+
+        <p id="ratingValue">
+
+            Drag the star ⭐
+
+        </p>
+
+        <button
+            class="nextQuestion"
+            id="ratingNext">
+
+            Next ➜
+
+        </button>
+
+    </div>
+
+    <!-- QUESTION 15 -->
+
+    <div class="quizScreen" id="q15">
+
+        <h2 class="questionTitle">
+
+            Any message for the creator
+            <br>
+            of this surprise? 😊
+
+        </h2>
+
+        <textarea
+            class="quizInput"
+            placeholder="Write anything you'd like..."></textarea>
+
+        <button class="nextQuestion">
+
+            Reward Assured ❤️
+
+        </button>
+
+    </div>
+
+
+<!-- COMPLETED -->
+<div class="quizScreen finish-screen" id="quizFinish">
+
+    <!-- INITIAL THANK YOU AND GOOGLE PHOTOS INTRO -->
+    <div id="finishMessage">
+
+        <h1 class="questionTitle">Thank You ❤️</h1>
+
+        <p class="finishText">
+            Will got your reward soon! 🤑🎁
+            <br><br>
+            But before that,
+        </p>
+
+        <div class="memories-surprise">
+
+            <p>
+                Google Photos also wanted to wish you a very Happy Birthday! 🎉
+            </p>
+
+            <p>
+                So it created a little surprise video for you.
+                Tap below to view the video.
+            </p>
+
+            <button id="playMemoriesBtn">
+                Tap to watch your memories 🎬
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GOOGLE PHOTOS VIDEO -->
+    <div id="memoriesVideoContainer" style="display:none;">
+
+        <video id="memoriesVideo" controls playsinline preload="metadata">
+
+            <source src="videos/memories.mp4" type="video/mp4">
+
+            Your browser does not support video playback.
+
+        </video>
+
+    </div>
+
+
+    <!-- AFTER VIDEO MESSAGES -->
+    <div id="afterVideoTransition" style="display:none;">
+
+        <p id="memoryMessage">
+            Hope you enjoyed the video and got to relive some of those moments...
+        </p>
+
+        <div id="letterIntro" style="display:none;">
+
+            <p>
+                Now, as we move towards the end of this little surprise,
+                there's something I've kept for you...
+            </p>
+
+            <p>
+                Something a little more personal, straight from my heart.
+            </p>
+
+            <p>
+                Do check it out. You might just like it. 💌
+            </p>
+
+        </div>
+
+        <button id="openLetterBtn" style="display:none;">
+            One Last Thing 💌
+        </button>
+
+    </div>
+
+
+    <!-- FINAL BIRTHDAY LETTER -->
+    <div id="birthdayLetter" style="display:none;">
+
+        <h1 id="letterHeading">
+            Happiest Birthday, Anuja! ❤️
+        </h1>
+
+        <div id="birthdayMessage"></div>
+
+    </div>
+
+</div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

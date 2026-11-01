@@ -1,0 +1,1506 @@
+
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycby3Se4aRIbOEAJuvT9Aa60jEpBwom-DBRcFCrH3u-uRxDzXdPJ3x3fevH4MPR69Xw/exec";
+
+let quizAnswers = {};
+
+/* HERE BUTTON - OPEN BIRTHDAY PAGE */
+
+document.getElementById("scanLink").addEventListener("click", function () {
+    showBirthday();
+});
+
+/* =========================
+   PAGE 1 -> PAGE 2
+========================= */
+
+function showBirthday(){
+
+flashScreen();
+
+setTimeout(() => {
+
+document.getElementById("page1").style.display = "none";
+document.getElementById("page2").style.display = "block";
+
+animateBirthday();
+
+},200);
+
+}
+
+/* FLASH EFFECT */
+function flashScreen(){
+
+let flash = document.createElement("div");
+flash.classList.add("flash");
+document.body.appendChild(flash);
+
+setTimeout(() => {
+flash.remove();
+},400);
+
+}
+
+/* MAIN ANIMATION */
+function animateBirthday(){
+
+let title = document.getElementById("birthdayText");
+
+title.animate([
+{
+opacity:0,
+transform:"scale(0.3)"
+},
+{
+opacity:1,
+transform:"scale(1.15)"
+},
+{
+opacity:1,
+transform:"scale(1)"
+}
+],{
+duration:1200,
+fill:"forwards"
+});
+
+createConfetti();
+
+setTimeout(() => { createConfetti(); },1000);
+setTimeout(() => { createConfetti(); },2000);
+
+setTimeout(() => {
+
+let teddy = document.getElementById("teddyImage");
+
+teddy.animate([
+{
+opacity:0,
+transform:"translateY(40px)"
+},
+{
+opacity:1,
+transform:"translateY(0)"
+}
+],{
+duration:1000,
+fill:"forwards"
+});
+
+},1200);
+
+setTimeout(() => {
+
+let question = document.getElementById("questionSection");
+
+question.animate([
+{
+opacity:0,
+transform:"translateY(20px)"
+},
+{
+opacity:1,
+transform:"translateY(0)"
+}
+],{
+duration:800,
+fill:"forwards"
+});
+
+},2200);
+
+}
+
+/* CONFETTI */
+function createConfetti(){
+
+for(let i=0;i<180;i++){
+
+let confetti = document.createElement("div");
+
+confetti.style.position = "fixed";
+confetti.style.width = "10px";
+confetti.style.height = "10px";
+confetti.style.borderRadius = "2px";
+confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+confetti.style.left = (window.innerWidth/2)+"px";
+confetti.style.top = (window.innerHeight/2)+"px";
+confetti.style.zIndex = "9999";
+
+document.body.appendChild(confetti);
+
+let x = (Math.random()-0.5)*1400;
+let y = (Math.random()-0.5)*1200;
+let rotation = Math.random()*1080;
+
+confetti.animate([
+{
+transform:`translate(0px,0px) rotate(0deg)`,
+opacity:1
+},
+{
+transform:`translate(${x}px,${y}px) rotate(${rotation}deg)`,
+opacity:1,
+offset:0.6
+},
+{
+transform:`translate(${x}px,${y+700}px) rotate(${rotation+720}deg)`,
+opacity:0
+}
+],{
+duration:4000,
+easing:"cubic-bezier(.15,.8,.25,1)"
+});
+
+setTimeout(() => {
+confetti.remove();
+},4000);
+
+}
+
+}
+
+/* NO BUTTON */
+const noBtn = document.getElementById("noBtn");
+
+function moveNoButton(){
+
+let currentX = parseFloat(noBtn.dataset.x || 0);
+let currentY = parseFloat(noBtn.dataset.y || 0);
+
+let moveX = (Math.random()*60)-30;
+let moveY = (Math.random()*40)-20;
+
+currentX += moveX;
+currentY += moveY;
+
+currentX = Math.max(-50, Math.min(50,currentX));
+currentY = Math.max(-25, Math.min(25,currentY));
+
+noBtn.style.transform = `translate(${currentX}px,${currentY}px)`;
+
+noBtn.dataset.x = currentX;
+noBtn.dataset.y = currentY;
+
+}
+
+noBtn.addEventListener("touchstart", function(e){
+e.preventDefault();
+moveNoButton();
+});
+
+noBtn.addEventListener("mouseover", moveNoButton);
+
+noBtn.addEventListener("click", function(e){
+e.preventDefault();
+moveNoButton();
+});
+
+
+/* =========================
+   ⭐ FIXED YES BUTTON (IMPORTANT)
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+const yesBtn = document.getElementById("yesBtn");
+
+if (yesBtn) {
+
+function goToPage3(){
+document.getElementById("page2").style.display = "none";
+document.getElementById("page3").style.display = "block";
+}
+
+/* desktop click */
+yesBtn.addEventListener("click", goToPage3);
+
+/* mobile tap support */
+yesBtn.addEventListener("touchstart", function(e){
+e.preventDefault();
+goToPage3();
+});
+
+}
+
+});
+
+
+/* =========================
+   PAGE 3 - FIXED FLOW
+========================= */
+
+let nextBalloon = 1;
+
+const balloons = [
+document.getElementById("b1"),
+document.getElementById("b2"),
+document.getElementById("b3"),
+document.getElementById("b4")
+];
+
+const words = ["YOU","ARE","TRULY","SPECIAL ❤️"];
+
+balloons.forEach((b, index)=>{
+
+b.addEventListener("click",()=>{
+
+if(index+1 !== nextBalloon){
+b.style.transform="scale(1.1)";
+setTimeout(()=>b.style.transform="",200);
+return;
+}
+
+/* SHOW WORD ONLY AFTER POP */
+let textBox = document.getElementById("t"+(index+1));
+textBox.innerText = words[index];
+textBox.style.opacity = 1;
+
+/* POP BALLOON */
+b.classList.add("pop");
+
+nextBalloon++;
+
+/* AFTER LAST BALLOON */
+if(nextBalloon === 5){
+
+setTimeout(()=>{
+
+/* Hide words behind balloons */
+document.getElementById("hiddenText").style.opacity = "0";
+
+/* Create center message */
+let specialMsg = document.createElement("div");
+
+specialMsg.id = "specialMsg";
+
+specialMsg.innerHTML = "YOU ARE TRULY SPECIAL <br> ANU... ❤️";
+
+specialMsg.style.position = "fixed";
+specialMsg.style.top = "50%";
+specialMsg.style.left = "50%";
+specialMsg.style.transform = "translate(-50%,-50%)";
+specialMsg.style.fontSize = "38px";
+specialMsg.style.fontWeight = "bold";
+specialMsg.style.fontFamily = "Century";
+specialMsg.style.color = "#ec250f";
+specialMsg.style.textAlign = "center";
+specialMsg.style.opacity = "0";
+specialMsg.style.transition = "1s ease";
+specialMsg.style.zIndex = "999";
+
+document.body.appendChild(specialMsg);
+
+/* Fade In */
+setTimeout(()=>{
+specialMsg.style.opacity = "1";
+},100);
+
+/* Stay for 2 sec */
+setTimeout(()=>{
+
+specialMsg.style.opacity = "0";
+
+/* Remove message */
+setTimeout(()=>{
+
+specialMsg.remove();
+
+/* Show next message */
+let msg = document.getElementById("nextMsg");
+msg.style.opacity = "1";
+
+setTimeout(()=>{
+document.addEventListener("click",goToCake,{once:true});
+},300);
+
+},1000);
+
+},2000);
+
+},1500);
+
+}
+
+});
+
+});
+
+function goToCake(){
+
+document.getElementById("page3").style.display="none";
+document.getElementById("page4").style.display="flex";
+
+let audio = document.getElementById("bgMusic");
+if(audio){
+audio.play().catch(()=>{});
+}
+
+}
+
+
+/* =========================
+   PAGE 4 - FULL FLOW (FIXED)
+========================= */
+
+let cake = document.getElementById("cakeImg");
+let text = document.getElementById("cakeText");
+let audio = document.getElementById("bgMusic");
+let guestVideo = document.getElementById("guestVideo");
+
+let page4State = 0;
+
+/* START MUSIC (optional) */
+function startCakeCeremony(){
+audio.currentTime = 0;
+audio.play().catch(()=>{});
+}
+
+/* MAIN CLICK HANDLER */
+document.getElementById("page4").addEventListener("click", function(){
+
+/* STEP 1 - DOOR */
+if(page4State === 0){
+
+audio.pause();
+
+/* Hide cake image initially */
+cake.style.display = "none";
+
+/* Show message first */
+text.style.opacity = "1";
+
+text.innerHTML =
+"Oh my gosh, look who's peeking through the door! 👀";
+
+/* After 2 sec fade out text */
+setTimeout(()=>{
+
+text.style.transition = "opacity 1s ease";
+text.style.opacity = "0";
+
+setTimeout(()=>{
+
+/* Show door image */
+cake.style.display = "block";
+cake.src = "images/door.png";
+cake.classList.add("doorLarge");
+cake.style.width = "450px";
+cake.style.maxWidth = "95%";
+cake.style.opacity = "0";
+cake.style.transition = "opacity 1s ease";
+
+setTimeout(()=>{
+cake.style.opacity = "1";
+},50);
+
+/* After 1 sec show tap message */
+setTimeout(()=>{
+
+text.style.opacity = "1";
+text.innerHTML =
+"Tap to welcome them in... 😉";
+
+},1000);
+
+},1000);
+
+},2000);
+
+page4State = 1;
+return;
+}
+
+/* STEP 2 - PLAY VIDEO */
+if(page4State === 1){
+
+cake.style.display = "none";
+
+guestVideo.style.display = "block";
+guestVideo.style.opacity = "1";
+guestVideo.play();
+
+text.innerHTML = "";
+
+page4State = 2;
+return;
+}
+
+/* STEP 3 - AFTER REVEAL SCREEN */
+if(page4State === 3){
+
+document.getElementById("guestReveal").innerHTML = "";
+
+guestVideo.style.display = "none";
+
+cake.style.display = "block";
+cake.src = "images/cake-candles-on.png";
+cake.classList.remove("doorLarge");
+cake.style.width = "";
+cake.style.maxWidth = "90%";
+
+text.innerHTML =
+"Make a wish ❤️<br>Tap to blow the candles";
+
+audio.currentTime = 0;
+audio.play().catch(()=>{});
+
+page4State = 4;
+return;
+}
+
+});
+
+/* =========================
+   VIDEO END EVENT (FIXED)
+========================= */
+
+guestVideo.addEventListener("ended", () => {
+
+let container = document.getElementById("guestReveal");
+container.innerHTML = "";
+
+/* fade video */
+guestVideo.style.transition = "opacity 1s ease";
+guestVideo.style.opacity = "0";
+
+setTimeout(() => {
+
+guestVideo.style.display = "none";
+
+/* IMAGE */
+let img = document.createElement("img");
+img.src = "images/guest.png";
+
+/* TEXT */
+let msg = document.createElement("div");
+msg.innerHTML =
+"I hope you like our guest 😉<br><br>Now shall we go to cake cutting ceremony?<br><br>Tap to continue...";
+
+/* APPEND */
+container.appendChild(img);
+container.appendChild(msg);
+
+/* SHOW ANIMATION */
+setTimeout(() => {
+img.style.opacity = "1";
+msg.style.opacity = "1";
+}, 100);
+
+page4State = 3;
+
+}, 1000);
+
+});
+
+/* =========================
+   CAKE CLICK
+========================= */
+
+cake.addEventListener("click", (e) => {
+
+e.stopPropagation();
+
+if(page4State !== 4) return;
+
+cake.src = "images/cake-candles-off.png";
+
+text.innerHTML = "Swipe to cut the cake 🎂";
+
+page4State = 5;
+
+});
+
+/* =========================
+   TOUCH SWIPE
+========================= */
+
+let startX = 0;
+let startY = 0;
+
+cake.addEventListener("touchstart", (e) => {
+
+if(page4State !== 5) return;
+
+startX = e.touches[0].clientX;
+startY = e.touches[0].clientY;
+
+});
+
+cake.addEventListener("touchend", (e) => {
+
+if(page4State !== 5) return;
+
+let endX = e.changedTouches[0].clientX;
+let endY = e.changedTouches[0].clientY;
+
+let distance = Math.sqrt(
+Math.pow(endX - startX, 2) +
+Math.pow(endY - startY, 2)
+);
+
+if(distance > 30){
+
+cutCake();
+
+}
+
+});
+
+/* =========================
+   MOUSE SWIPE (LAPTOP)
+========================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+cake.addEventListener("mousedown", (e) => {
+
+if(page4State !== 5) return;
+
+mouseX = e.clientX;
+mouseY = e.clientY;
+
+});
+
+cake.addEventListener("mouseup", (e) => {
+
+if(page4State !== 5) return;
+
+let dx = e.clientX - mouseX;
+let dy = e.clientY - mouseY;
+
+let distance = Math.sqrt(dx*dx + dy*dy);
+
+if(distance > 30){
+
+cutCake();
+
+}
+
+});
+
+/* =========================
+   CUT CAKE FUNCTION
+========================= */
+
+function cutCake(){
+
+cake.src = "images/cake-cut.png";
+text.innerHTML = "Perfect! ❤️";
+
+page4State = 6;
+
+setTimeout(() => {
+
+cake.style.display = "none";
+
+let cakeVideo = document.getElementById("cakeCutVideo");
+
+cakeVideo.style.display = "block";
+cakeVideo.style.opacity = "0";
+
+setTimeout(() => {
+
+cakeVideo.style.transition = "opacity 1s ease";
+cakeVideo.style.opacity = "1";
+cakeVideo.play();
+
+}, 50);
+
+}, 1500);
+
+}
+
+function blastConfetti(){
+
+for(let i=0;i<200;i++){
+
+let confetti = document.createElement("div");
+
+confetti.style.position = "fixed";
+confetti.style.width = "8px";
+confetti.style.height = "8px";
+confetti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+confetti.style.left = "50%";
+confetti.style.top = "50%";
+confetti.style.zIndex = "9999";
+confetti.style.pointerEvents = "none";
+
+document.body.appendChild(confetti);
+
+let x = (Math.random()-0.5)*1200;
+let y = (Math.random()-0.5)*800;
+
+confetti.animate([
+{ transform:`translate(0,0)`, opacity:1 },
+{ transform:`translate(${x}px,${y}px)`, opacity:1, offset:0.7 },
+{ transform:`translate(${x}px,${y+600}px)`, opacity:0 }
+],{
+duration:2000,
+easing:"cubic-bezier(.15,.8,.25,1)"
+});
+
+setTimeout(()=>confetti.remove(),2000);
+}
+}
+
+/* =========================
+   CAKE VIDEO END → PAGE 5
+========================= */
+
+document.getElementById("cakeCutVideo")
+.addEventListener("ended", () => {
+
+/* 🎊 CONFETTI BLAST */
+blastConfetti();
+
+/* short delay before page change */
+
+setTimeout(() => {
+
+audio.pause();
+
+document.getElementById("page4").style.display = "none";
+document.getElementById("page5").style.display = "block";
+document.getElementById("gameIntro").style.display = "flex";
+
+}, 2500); //wait for confetti to finish
+
+});
+
+document.getElementById("gameIntro")
+.addEventListener("click",()=>{
+
+document.getElementById("gameIntro")
+.style.display="none";
+
+document.getElementById("revengeIntro")
+.style.display="flex";
+
+setTimeout(()=>{
+
+document.getElementById("revengeIntro").style.display="none";
+document.getElementById("gameRules").style.display="flex";
+
+},1000);
+
+document.getElementById("gameRules")
+.addEventListener("click",()=>{
+
+document.getElementById("gameRules").style.display="none";
+document.getElementById("gameArea").style.display="block";
+
+});
+
+});
+
+/* =========================
+   PAGE 5 - UPDATED (DART READY + THROW ANIMATION)
+========================= */
+
+let totalScore = 0;
+let dartsLeft = 5;
+
+let board = document.getElementById("dartBoardContainer");
+let reaction = document.getElementById("reactionText");
+let scoreSpan = document.getElementById("score");
+let dartsSpan = document.getElementById("dartsLeft");
+
+let readyDart = document.getElementById("readyDart");
+
+/* =========================
+   TOUCH SWIPE
+========================= */
+
+let swipeStartX=0;
+let swipeStartY=0;
+
+document.addEventListener("touchstart",(e)=>{
+
+if(document.getElementById("gameArea").style.display!=="block") return;
+if(dartsLeft<=0) return;
+
+swipeStartX=e.touches[0].clientX;
+swipeStartY=e.touches[0].clientY;
+
+});
+
+document.addEventListener("touchend",(e)=>{
+
+if(document.getElementById("gameArea").style.display!=="block") return;
+if(dartsLeft<=0) return;
+
+let dx = e.changedTouches[0].clientX - swipeStartX;
+let dy = e.changedTouches[0].clientY - swipeStartY;
+
+let distance = Math.sqrt(dx*dx + dy*dy);
+
+if(distance < 30) return;
+
+throwDart();
+
+});
+
+/* =========================
+   MOUSE SUPPORT (LAPTOP)
+========================= */
+
+let mouseSwipeStartX = 0;
+let mouseSwipeStartY = 0;
+
+document.addEventListener("mousedown",(e)=>{
+
+if(document.getElementById("gameArea").style.display!=="block") return;
+if(dartsLeft<=0) return;
+
+mouseSwipeStartX = e.clientX;
+mouseSwipeStartY = e.clientY;
+
+});
+
+document.addEventListener("mouseup",(e)=>{
+
+if(document.getElementById("gameArea").style.display!=="block") return;
+if(dartsLeft<=0) return;
+
+let dx = e.clientX - mouseSwipeStartX;
+let dy = e.clientY - mouseSwipeStartY;
+
+let distance = Math.sqrt(dx*dx + dy*dy);
+
+if(distance < 30) return;
+
+throwDart();
+
+});
+
+/* =========================
+   THROW DART (LOGIC SAME)
+========================= */
+function throwDart(){
+
+let rand=Math.random();
+
+let score=0;
+let message="";
+
+let boardSize = board.offsetWidth;
+
+let x=boardSize/2;
+let y=boardSize/2;
+
+if(rand<0.45){
+score=100;
+message="OUCH 😭";
+x=boardSize*0.47 + Math.random()*20;
+y=boardSize*0.47 + Math.random()*20;
+}
+else if(rand<0.65){
+score=80;
+message="I saw that coming 😅";
+x=boardSize*0.35 + Math.random()*60;
+y=boardSize*0.35 + Math.random()*60;
+}
+else if(rand<0.80){
+score=50;
+message="Not bad 😜";
+x=boardSize*0.25 + Math.random()*100;
+y=boardSize*0.25 + Math.random()*100;
+}
+else if(rand<0.90){
+score=20;
+message="You almost got me 😆";
+x=40 + Math.random()*(boardSize-80);
+y=40 + Math.random()*(boardSize-80);
+}
+else{
+score=0;
+message="Target escaped 😂";
+x=Math.random()*boardSize;
+y=Math.random()*boardSize;
+}
+
+animateDartToTarget(x,y,score,message);
+
+}
+
+function animateDartToTarget(x,y,score,message){
+
+let boardRect = board.getBoundingClientRect();
+
+let targetX = boardRect.left + x;
+let targetY = boardRect.top + y;
+
+readyDart.style.transition =
+"all .35s cubic-bezier(.17,.67,.24,1.22)";
+
+readyDart.style.left = targetX + "px";
+readyDart.style.top = targetY + "px";
+readyDart.style.bottom = "auto";
+
+readyDart.style.transform =
+`translate(-50%,-50%) rotate(${Math.random()*60-30}deg)`;
+
+setTimeout(()=>{
+
+board.animate([
+{transform:"scale(1)"},
+{transform:"scale(1.03)"},
+{transform:"scale(1)"}
+],{
+duration:150
+});
+
+totalScore += score;
+dartsLeft--;
+
+scoreSpan.innerText = totalScore;
+dartsSpan.innerText = dartsLeft;
+
+reaction.innerText = message;
+
+setTimeout(()=>{
+
+readyDart.style.transition="none";
+readyDart.style.left="50%";
+readyDart.style.top="auto";
+readyDart.style.bottom="40px";
+readyDart.style.transform="translateX(-50%)";
+
+},400);
+
+if(dartsLeft===0){
+setTimeout(showReport,1500);
+}
+
+},350);
+
+}
+
+/* =========================
+   REPORT SCREEN
+========================= */
+
+function showReport(){
+
+document.getElementById("gameArea").style.display="none";
+document.getElementById("revengeReport").style.display="flex";
+
+document.getElementById("finalScoreText").innerHTML =
+"Total Damage: " + totalScore;
+
+let painLevel="";
+
+if(totalScore<=150){
+painLevel="Pain Level: Minimal 😎";
+}
+else if(totalScore<=300){
+painLevel="Pain Level: Moderate 😬";
+}
+else{
+painLevel="Pain Level: Extremely High 😭";
+}
+
+document.getElementById("painLevelText").innerHTML = painLevel;
+}
+document.getElementById("revengeReport")
+.addEventListener("click",()=>{
+
+    document.getElementById("revengeReport").style.display="none";
+
+    // Show Congratulations screen
+    document.getElementById("quizIntro").style.display="flex";
+
+    // Automatically change after 3 seconds
+    setTimeout(()=>{
+
+        document.getElementById("quizIntro").style.display="none";
+
+        document.getElementById("quizWelcome").style.display="flex";
+
+    },3000);
+
+},{once:true});
+
+
+/* =========================
+   QUIZ SECTION
+========================= */
+
+// Open Quiz from Welcome screen
+
+document.getElementById("quizWelcome")
+.addEventListener("click",()=>{
+
+    document.getElementById("quizWelcome").style.display="none";
+
+    document.getElementById("quizPage").style.display="flex";
+    document.getElementById("quizPage").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+   });
+    showQuestion(0);
+});
+
+
+const quizScreens = document.querySelectorAll(".quizScreen");
+
+console.log("Quiz screens found =", quizScreens.length);
+
+let currentQuestion = 0;
+
+
+/* SHOW QUESTION */
+
+function showQuestion(index){
+
+    quizScreens.forEach((q,i)=>{
+        q.classList.remove("active");
+        console.log(i, q.className);
+    });
+
+    quizScreens[index].classList.add("active");
+
+    console.log("Current screen:", quizScreens[index]);
+
+    currentQuestion = index;
+
+}
+
+function getQuizQuestionNumber(screen) {
+    const screens = Array.from(quizScreens);
+    return screens.indexOf(screen) + 1;
+}
+
+function saveCurrentQuizAnswer(screen, answer) {
+    const questionNumber = getQuizQuestionNumber(screen);
+
+    if (questionNumber >= 1 && questionNumber <= 16) {
+        quizAnswers["q" + questionNumber] = answer;
+    }
+}
+
+function submitQuizAnswersToGoogleSheet() {
+
+    const data = {
+        q1: quizAnswers.q1 || "",
+        q2: quizAnswers.q2 || "",
+        q3: quizAnswers.q3 || "",
+        q4: quizAnswers.q4 || "",
+        q5: quizAnswers.q5 || "",
+        q6: quizAnswers.q6 || "",
+        q7: quizAnswers.q7 || "",
+        q8: quizAnswers.q8 || "",
+        q9: quizAnswers.q9 || "",
+        q10: quizAnswers.q10 || "",
+        q11: quizAnswers.q11 || "",
+        q12: quizAnswers.q12 || "",
+        q13: quizAnswers.q13 || "",
+        q14: quizAnswers.q14 || "",
+        q15: quizAnswers.q15 || "",
+        q16: quizAnswers.q16 || ""
+    };
+
+    fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "text/plain"
+        },
+        body: JSON.stringify(data)
+    }).catch(error => {
+        console.log("Google Sheet submission error:", error);
+    });
+}
+
+/* NEXT QUESTION */
+
+function nextQuestion() {
+    if (currentQuestion < quizScreens.length - 1) {
+
+        quizScreens[currentQuestion].classList.remove("active");
+
+        currentQuestion++;
+
+        quizScreens[currentQuestion].classList.add("active");
+        
+        // Final quiz screen reached
+        if (currentQuestion === quizScreens.length - 1) {
+            submitQuizAnswersToGoogleSheet();
+        }
+    }
+}
+
+
+/* =========================
+   MCQ QUESTIONS
+========================= */
+
+document.querySelectorAll(".quizOption").forEach(btn=>{
+    btn.addEventListener("click",function(){
+
+        // Don't handle stubborn question here
+        if (this.classList.contains("stubbornOption")) {
+            return;
+        }
+
+        let parent = this.parentElement;
+
+        parent.querySelectorAll(".quizOption")
+        .forEach(b=>b.classList.remove("selected"));
+
+        this.classList.add("selected");
+
+        // Save answer
+        let screen = this.closest(".quizScreen");
+        saveCurrentQuizAnswer(screen, this.innerText.trim());
+
+        setTimeout(()=>{
+            nextQuestion();
+        },1000);
+    });
+});
+
+
+/* =========================
+   TEXT QUESTIONS (Validation)
+========================= */
+
+document.querySelectorAll(".nextQuestion").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+
+        let screen = btn.closest(".quizScreen");
+        let input = screen.querySelector(".quizInput, .otherInput");
+
+        if(input){
+
+            if(input.value.trim() === ""){
+                alert("Are Madam ji, aaj to bata dijiye 😒");
+                input.focus();
+                return;
+            }
+
+            // Save written answer
+            saveCurrentQuizAnswer(screen, input.value.trim());
+        }
+
+        if(screen.id==="q12"){
+            document.getElementById("quizBreakPopup").style.display="flex";
+            return;
+        }
+
+        nextQuestion();
+    });
+});
+
+
+/* =========================
+   ANY OTHER OPTION
+========================= */
+
+document.querySelectorAll(".otherBtn").forEach(btn=>{
+
+    btn.addEventListener("click",function(){
+
+        this.classList.add("selected");
+
+        let screen = this.closest(".quizScreen");
+
+        let input = screen.querySelector(".otherInput");
+
+        let next = screen.querySelector(".otherNext");
+
+        input.style.display="block";
+
+        next.style.display="inline-block";
+
+        input.focus();
+
+    });
+
+});
+
+
+document.querySelectorAll(".otherNext").forEach(btn=>{
+
+    btn.addEventListener("click",function(){
+
+        let screen = this.closest(".quizScreen");
+
+        let input = screen.querySelector(".otherInput");
+
+        let answer = input.value.trim();
+
+        // Don't allow empty answer
+        if(answer === ""){
+            alert("Please write your answer first 😊");
+            input.focus();
+            return;
+        }
+
+        // SAVE ANSWER
+        saveCurrentQuizAnswer(screen, answer);
+
+        // Go to next question
+        nextQuestion();
+
+    });
+
+});
+
+
+/* =========================
+   ENTER KEY SUPPORT
+========================= */
+
+document.querySelectorAll(".quizInput,.otherInput")
+.forEach(box=>{
+
+    box.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Enter" && !e.shiftKey){
+
+            e.preventDefault();
+
+            if(box.value.trim()===""){
+
+                alert("Are Madam ji, aaj to bata dijiye 😒");
+                box.focus();
+                return;
+
+            }
+            let screen = box.closest(".quizScreen");
+            saveCurrentQuizAnswer(screen, box.value.trim());
+            nextQuestion();
+
+        }
+
+    });
+
+});
+/* =========================
+   STUBBORN QUESTION POPUP
+========================= */
+
+const stubbornButtons = document.querySelectorAll(".stubbornOption");
+
+const stubbornPopup = document.getElementById("stubbornPopup");
+
+const stubbornPopupText = document.getElementById("stubbornPopupText");
+
+const popupNextBtn = document.getElementById("popupNextBtn");
+
+let popupFinished = false;
+
+stubbornButtons.forEach(btn=>{
+
+    btn.addEventListener("click",function(){
+
+        document.querySelectorAll(".stubbornOption")
+        .forEach(b=>b.classList.remove("selected"));
+
+        this.classList.add("selected");
+
+        popupFinished = false;
+
+        // Save stubborn question answer
+        let screen = this.closest(".quizScreen");
+        saveCurrentQuizAnswer(screen, this.dataset.answer);
+
+        if(this.dataset.answer==="Aditya"){
+
+            stubbornPopupText.innerText=
+`😂 Correct Answer Detected!
+
+Aditya is scientifically proven to be the more stubborn one.
+
+He hears Anuja's advice...
+
+Processes advice...
+
+Then does whatever he wanted anyway.
+
+(just like waiting at stations 🤦‍♂️)`;
+
+        }
+        else{
+
+            stubbornPopupText.innerText=
+`🤔 Interesting Choice...
+
+Maybe Anuja is stubborn sometimes...
+
+But let's be honest...
+
+Aditya never listens to Anuja either. 😂`;
+
+        }
+
+        stubbornPopup.style.display="flex";
+
+    });
+
+});
+
+popupNextBtn.addEventListener("click",()=>{
+
+    stubbornPopup.style.display="none";
+
+    nextQuestion();
+
+});
+
+/* =========================
+   STAR RATING
+========================= */
+
+const star=document.getElementById("ratingStar");
+const line=document.querySelector(".ratingLine");
+const value=document.getElementById("ratingValue");
+
+let rating=1;
+let dragging=false;
+
+function updateRating(clientX){
+
+const rect=line.getBoundingClientRect();
+
+let x=clientX-rect.left;
+
+x=Math.max(0,Math.min(rect.width,x));
+
+star.style.left=(x-18)+"px";
+
+rating=Math.round((x/rect.width)*9)+1;
+
+value.innerHTML="Rating : "+rating+" ⭐";
+
+}
+
+star.addEventListener("mousedown",()=>dragging=true);
+
+document.addEventListener("mouseup",()=>dragging=false);
+
+document.addEventListener("mousemove",(e)=>{
+
+if(!dragging)return;
+
+updateRating(e.clientX);
+
+});
+
+star.addEventListener("touchstart",()=>dragging=true);
+
+document.addEventListener("touchend",()=>dragging=false);
+
+document.addEventListener("touchmove",(e)=>{
+
+if(!dragging)return;
+
+updateRating(e.touches[0].clientX);
+
+});
+
+document.getElementById("ratingNext")
+.addEventListener("click",()=>{
+
+if(value.innerHTML==="Drag the star ⭐"){
+
+alert("Give your rating first ⭐");
+
+return;
+
+}
+// Save rating answer
+let screen = document.getElementById("ratingNext").closest(".quizScreen");
+
+saveCurrentQuizAnswer(screen, rating);
+nextQuestion();
+
+});
+
+
+
+/* =========================================
+   GOOGLE PHOTOS MEMORY VIDEO
+========================================= */
+
+const playMemoriesBtn = document.getElementById("playMemoriesBtn");
+const memoriesVideoContainer = document.getElementById("memoriesVideoContainer");
+const memoriesVideo = document.getElementById("memoriesVideo");
+const finishMessage = document.getElementById("finishMessage");
+
+const afterVideoTransition = document.getElementById("afterVideoTransition");
+const memoryMessage = document.getElementById("memoryMessage");
+const letterIntro = document.getElementById("letterIntro");
+const openLetterBtn = document.getElementById("openLetterBtn");
+
+const birthdayLetter = document.getElementById("birthdayLetter");
+const birthdayMessageElement = document.getElementById("birthdayMessage");
+
+
+/* =========================================
+   STEP 1: PLAY GOOGLE PHOTOS VIDEO
+========================================= */
+
+if (playMemoriesBtn && memoriesVideoContainer && memoriesVideo) {
+
+    playMemoriesBtn.addEventListener("click", function () {
+
+        finishMessage.style.display = "none";
+        memoriesVideoContainer.style.display = "block";
+
+        memoriesVideo.play().catch(function(error) {
+            console.log("Video playback error:", error);
+        });
+
+    });
+
+}
+
+
+/* =========================================
+   STEP 2: VIDEO ENDS - SHOW MESSAGES
+========================================= */
+
+if (memoriesVideo) {
+
+    memoriesVideo.addEventListener("ended", function () {
+
+        // Hide video
+        memoriesVideoContainer.style.display = "none";
+
+        // Show transition section
+        afterVideoTransition.style.display = "block";
+
+
+        // Wait 1.5 seconds after video ends
+        setTimeout(function () {
+
+            // Show first message
+            memoryMessage.style.display = "block";
+
+
+            // Wait another 1.5 seconds
+            setTimeout(function () {
+
+                // Show second message
+                letterIntro.style.display = "block";
+
+
+                // Reveal button after second message
+                setTimeout(function () {
+
+                    openLetterBtn.style.display = "block";
+
+                }, 2000);
+
+            }, 1500);
+
+        }, 1500);
+
+    });
+
+}
+
+
+/* =========================================
+   STEP 3: BIRTHDAY LETTER CONTENT
+========================================= */
+
+
+const birthdayLetterText = `Dear Anuja (Nae haengbok 😊)
+
+Happy Birthday to the most amazing person! 🎉
+
+I hope today brings you countless reasons to smile, laugh, and feel loved, because you truly deserve every bit of happiness in the world.
+
+People who leave a positive impact on others are rare. Your kindness, your smile, and the way you brighten the people around you make you someone who is genuinely special.
+
+Life moves fast, and we often get busy with work, responsibilities, and everything else. But Birthday is a beautiful reminder of how far we've come and how many wonderful moments are still waiting ahead so today is about celebrating you—your journey, your dreams, your achievements, and all the wonderful moments still waiting for you.
+
+I hope this year surprises you with good health, beautiful opportunities, peaceful days, unforgettable memories, endless laughter, success in everything you dream of, and people who always value and support you. Whenever life gets difficult, I hope you remember how strong, capable, and wonderful you truly are.
+
+There is something I want to say to you...
+
+I know I have hurt you, disappointed you, annoyed you, and become the reason for some unpleasant moments in your life. For all of that, I am truly sorry. It was never my intention to make your life even a little difficult, and I never wanted to become a source of discomfort or unhappiness in your life.
+
+Looking back, there were many moments which could have handled better, but I can't change the past. All I can do now is sincerely apologize, and I hope you can remember that none of it ever came from a place of bad intention.
+
+Life has a way of taking people onto different paths, and sometimes the kindest thing we can do is respect those paths. No matter where life takes us from here, I genuinely hope you always find reasons to smile, people who care for you, and moments that make your heart feel at peace.
+
+Thank you for being the person you are. Apart from those nice seniors, you are one of the greatest people Bharati Fire brought into my life, and I'll always be grateful for that.
+
+I made this little birthday surprise with only one intention—to make you smile, even if it's just for a few moments. If it managed to do that, then it has already fulfilled its purpose.
+
+May your smile never fade, your heart always stays full, and your life be filled with love, good health, success, happiness, billions of beautiful memories and a good people.
+
+Happpppiiiiieeeesssssttttt Birthday, Anuja! ❤️
+
+Wishing you nothing but the very best—for today, for this year, and for all the years to come.
+
+Take care of yourself, always…
+
+Keep smiling, always…
+
+With warm wishes,
+
+— Aditya`;
+
+/* =========================================
+   STEP 4: LETTER TYPING ANIMATION
+========================================= */
+
+const birthdayLetterTypingSpeed = 55;
+
+let birthdayLetterIndex = 0;
+
+function typeBirthdayLetter() {
+
+    if (birthdayLetterIndex < birthdayLetterText.length) {
+
+        birthdayMessageElement.textContent +=
+            birthdayLetterText.charAt(birthdayLetterIndex);
+
+        birthdayLetterIndex++;
+
+        // Keep latest typed text visible
+        birthdayMessageElement.scrollTop =
+            birthdayMessageElement.scrollHeight;
+
+        setTimeout(
+            typeBirthdayLetter,
+            birthdayLetterTypingSpeed
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   STEP 5: ONE LAST THING BUTTON
+========================================= */
+
+if (openLetterBtn) {
+
+    openLetterBtn.addEventListener("click", function () {
+
+        // Hide transition messages
+        afterVideoTransition.style.display = "none";
+
+        // Show birthday letter
+        birthdayLetter.style.display = "block";
+
+        document.getElementById("letterHeading").style.display = "block";
+        
+        // Start typing animation
+        birthdayLetterIndex = 0;
+        birthdayMessageElement.textContent = "";
+
+        typeBirthdayLetter();
+
+    });
+
+}

@@ -1,0 +1,1865 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:#f2aac2;
+}
+
+/* PAGE 1 */
+
+#page1{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+background:#f2aac2;
+
+padding:20px;
+
+}
+
+#qrBox{
+
+position:relative;
+
+width:280px;
+
+height:280px;
+
+overflow:hidden;
+
+}
+
+#qrImage{
+
+width:100%;
+
+height:100%;
+
+object-fit:contain;
+
+}
+
+/* SCANNER */
+
+.scan-line{
+
+position:absolute;
+
+left:0;
+
+width:100%;
+
+height:14px;
+
+background:
+linear-gradient(
+to bottom,
+transparent,
+#00ff99,
+transparent
+);
+
+box-shadow:
+0 0 15px #00ff99,
+0 0 30px #00ff99,
+0 0 45px #00ff99;
+
+animation:
+scanMove 2s infinite alternate linear;
+
+pointer-events:none;
+
+}
+
+@keyframes scanMove{
+
+0%{
+top:0;
+}
+
+100%{
+top:265px;
+}
+
+}
+
+.tap-text {
+    margin-top: 25px;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+#scanLink {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: purple;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+    text-decoration: underline;
+    animation: pulse 1s infinite;
+    position: relative;
+    z-index: 11;
+    pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+    .tap-text {
+        font-size: 20px;
+    }
+
+    #scanLink {
+        font-size: 24px;
+    }
+}
+
+@keyframes pulse{
+
+0%{
+opacity:1;
+}
+
+50%{
+opacity:.5;
+}
+
+100%{
+opacity:1;
+}
+
+}
+
+/* PAGE 2 */
+
+#page2{
+
+display:none;
+
+min-height:100vh;
+
+padding-top:30px;
+
+padding-bottom:50px;
+
+text-align:center;
+
+position:relative;
+
+overflow-x:hidden;
+
+background:
+linear-gradient(
+180deg,
+#f2aac2,
+#f194b3
+);
+
+}
+
+#birthdayText{
+
+font-family:
+"Segoe Script",
+"Brush Script MT",
+cursive;
+
+font-size:72px;
+
+font-weight:bold;
+
+opacity:0;
+
+padding-left:15px;
+padding-right:15px;
+
+line-height:1.15;
+
+text-align:center;
+
+color:#f80707;
+
+}
+
+#birthdayText span{
+
+display:block;
+
+margin-top:10px;
+
+font-family:inherit;
+
+font-weight:inherit;
+
+font-size:1em;
+
+color:inherit;
+
+line-height:inherit;
+
+}
+
+#teddyImage{
+
+width:320px;
+
+max-width:85%;
+
+margin-top:25px;
+
+opacity:0;
+
+}
+
+#questionSection{
+
+margin-top:25px;
+
+opacity:0;
+
+}
+
+#questionSection p{
+
+font-size:24px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+color:purple;
+
+padding-left:15px;
+padding-right:15px;
+
+}
+
+.btn-container{
+
+position:relative;
+
+height:120px;
+
+}
+
+button{
+
+padding:14px 30px;
+
+font-size:18px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+
+#yesBtn{
+
+background:#2ecc71;
+
+color:white;
+
+margin-right:15px;
+
+}
+
+#noBtn{
+
+background:#e74c3c;
+
+color:white;
+
+transition:transform .15s ease;
+
+}
+
+.flash{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:#f2aac2;
+
+z-index:99999;
+
+pointer-events:none;
+
+animation:flashAnim .4s forwards;
+
+}
+
+@keyframes flashAnim{
+
+0%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+#birthdayText{
+
+font-size:42px;
+
+line-height:1.2;
+
+}
+
+#teddyImage{
+
+width:220px;
+
+margin-top:15px;
+
+}
+
+#questionSection{
+
+margin-top:15px;
+
+}
+
+#questionSection p{
+
+font-size:18px;
+
+}
+
+button{
+
+padding:12px 22px;
+
+font-size:16px;
+
+}
+
+.btn-container{
+
+height:100px;
+
+}
+
+.tap-text{
+
+font-size:20px;
+
+}
+
+#scanLink{
+
+font-size:24px;
+
+}
+
+#qrBox{
+
+width:240px;
+
+height:240px;
+
+}
+
+}
+
+/* =========================
+   PAGE 3 - FINAL FIX (WORKING)
+========================= */
+
+#page3{
+display:none;
+min-height:100vh;
+padding:20px;
+background:#f2aac2;
+text-align:center;
+}
+
+/* TITLE */
+#balloonTitle{
+font-size:30px;
+color:purple;
+margin-bottom:15px;
+}
+
+/* BALLOON CONTAINER */
+#balloonWrapper{
+position:relative;
+width:320px;
+height:320px;
+margin:0 auto;
+}
+
+/* BALLOONS */
+.balloon{
+position:absolute;
+width:80px;
+cursor:pointer;
+transition:0.3s;
+z-index:2; /* ALWAYS ABOVE TEXT */
+}
+
+.balloon img{
+width:100%;
+}
+
+/* DIAMOND POSITIONS */
+#b1{top:0;left:50%;transform:translateX(-50%);}
+#b2{top:110px;left:0;}
+#b3{top:110px;right:0;}
+#b4{bottom:0;left:50%;transform:translateX(-50%);}
+
+/* POP EFFECT */
+.balloon.pop{
+transform:scale(1.5);
+opacity:0;
+transition:0.4s ease;
+}
+
+/* =========================
+   TEXT (BEHIND BALLOONS)
+========================= */
+
+#hiddenText{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:1; /* behind balloons */
+pointer-events:none;
+}
+
+/* DEFAULT TEXT STYLE */
+#hiddenText div{
+position:absolute;
+font-family:"century";
+font-size:22px;
+font-weight:bold;
+color:#ec250f;
+opacity:0;
+transition:0.4s ease;
+}
+
+/* MATCH POSITIONS EXACTLY */
+#t1{top:0;left:50%;transform:translateX(-50%);}
+#t2{top:110px;left:0;}
+#t3{top:110px;right:0;}
+#t4{
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+font-size:26px;
+font-weight:900;
+}
+
+#specialMessage{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:38px;
+font-weight:900;
+
+color:#ec250f;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:1s ease;
+
+z-index:5;
+
+text-align:center;
+
+width:90%;
+
+}
+/* =========================
+   NEXT MESSAGE (FORCED BELOW)
+========================= */
+
+#nextMsg{
+width:100%;
+max-width:500px;
+
+margin-top:40px;
+
+text-align:center;
+
+font-size:22px;
+font-weight:600;
+line-height:1.6;
+
+color:purple;
+;
+
+opacity:0;
+transition:1s ease;
+}
+
+@media(max-width:768px){
+#specialMessage{
+font-size:28px;
+}
+}
+
+/* =========================
+   PAGE 4
+========================= */
+
+#page4{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+padding:20px;
+text-align:center;
+background:#f2aac2;
+
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+}
+
+#cakeImg{
+display:block;
+width:320px;
+max-width:90%;
+margin:0 auto;
+cursor:pointer;
+}
+
+#guestVideo{
+width:95vw;
+max-width:700px;
+max-height:85vh;
+border-radius:15px;
+object-fit:contain;
+}
+
+#cakeCutVideo{
+
+width:80vw;
+
+max-width:350px;
+
+max-height:60vh;
+
+border-radius:15px;
+
+object-fit:contain;
+
+opacity:0;
+
+margin:0 auto;
+
+display:none;
+
+}
+
+#cakeText{
+font-size:22px;
+font-weight:600;
+line-height:1.6;
+margin-top:20px;
+color:purple;
+padding-left:15px;
+padding-right:15px;
+}
+
+@media(max-width:768px){
+
+#cakeImg{
+width:320px;
+max-width:90%;
+margin-top:0;
+cursor:pointer;
+}
+
+#cakeImg.doorLarge{
+
+width:340px;
+max-width:95%;
+
+}
+
+#cakeText{
+font-size:18px;
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+#cakeImg{
+
+width:240px;
+
+}
+
+#cakeText{
+
+font-size:18px;
+
+}
+
+}
+
+#guestReveal{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:15px;
+z-index:10;
+width:100%;
+}
+
+#guestReveal img{
+width:260px;
+max-width:75%;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+opacity:0;
+transition:1s ease;
+}
+
+#guestReveal div{
+font-size:20px;
+font-weight:600;
+color:purple;
+text-align:center;
+opacity:0;
+transition:1s ease;
+}
+
+/* =========================
+   PAGE 5
+========================= */
+
+#page5{
+display:none;
+min-height:100vh;
+background:#f2aac2;
+color:purple;
+padding:20px;
+text-align:center;
+}
+
+#gameIntro,
+#revengeIntro,
+#revengeReport{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+#gameIntro h2,
+#revengeTitle{
+font-size:34px;
+margin-bottom:20px;
+}
+
+#gameIntro p,
+#revengeSubtitle{
+font-size:24px;
+line-height:1.6;
+}
+
+#gameArea{
+display:none;
+}
+
+#scoreBoard{
+display:flex;
+justify-content:space-between;
+max-width:350px;
+margin:0 auto 20px;
+font-size:22px;
+font-weight:bold;
+}
+
+#gameInstructions{
+font-size:20px;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+#gameRules{
+display:none;
+min-height:100vh;
+padding-top:80px;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+#gameRules h2{
+font-size:32px;
+margin-bottom:20px;
+}
+
+#gameRules p{
+font-size:22px;
+line-height:1.8;
+}
+
+#dartBoardContainer{
+position:relative;
+width:320px;
+height:320px;
+margin:20px auto;
+}
+
+#readyDart{
+position:fixed;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+width:45px;
+z-index:100;
+transition:0.3s ease;
+}
+
+#dartBoard{
+width:100%;
+height:100%;
+object-fit:contain;
+cursor:crosshair;
+}
+
+.dart{
+position:absolute;
+width:55px;
+pointer-events:none;
+z-index:20;
+
+filter:
+drop-shadow(0 4px 6px rgba(0,0,0,.35));
+
+transform-origin:center center;
+}
+
+#reactionText{
+font-size:28px;
+font-weight:bold;
+margin-top:20px;
+min-height:50px;
+}
+
+#finalScoreText{
+font-size:30px;
+font-weight:bold;
+}
+
+#painLevelText{
+font-size:26px;
+font-weight:bold;
+margin-top:15px;
+}
+
+@media(max-width:768px){
+
+#dartBoardContainer{
+width:280px;
+height:280px;
+}
+
+#gameIntro h2,
+#revengeTitle{
+font-size:26px;
+}
+
+#gameIntro p,
+#revengeSubtitle{
+font-size:20px;
+}
+
+#scoreBoard{
+font-size:18px;
+}
+
+#reactionText{
+font-size:22px;
+color:#ec250f;
+}
+
+}
+
+@media(max-width:768px){
+
+#page4{
+padding-top:6vh;
+justify-content:flex-start;
+}
+
+#gameIntro,
+#revengeIntro,
+#revengeReport{
+padding-bottom:15vh;
+}
+
+#gameArea{
+padding-top:2vh;
+}
+
+#gameRules{
+padding-top:60px;
+}
+
+#gameRules h2{
+font-size:24px;
+}
+
+#gameRules p{
+font-size:18px;
+}
+
+}
+
+/* =========================
+   QUIZ INTRO PAGE
+========================= */
+
+#quizIntro{
+
+display:none;
+
+min-height:100vh;
+
+padding:25px;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+text-align:center;
+
+color:purple;
+
+}
+
+#quizWelcome{
+
+display:none;
+
+min-height:100vh;
+
+padding:25px;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+text-align:center;
+
+color:purple;
+
+}
+
+.quizBigTitle{
+
+font-size:52px;
+font-weight:900;
+
+color:#ec250f;
+
+margin-bottom:25px;
+
+}
+
+.quizShowTitle{
+
+font-size:40px;
+font-weight:900;
+
+margin-top:25px;
+margin-bottom:20px;
+
+color:#8e44ad;
+
+}
+
+.quizText{
+
+font-size:24px;
+line-height:1.8;
+
+max-width:700px;
+
+}
+
+.tapBegin{
+
+margin-top:35px;
+
+font-size:16px;
+
+opacity:.8;
+
+animation:pulse 1.5s infinite;
+
+}
+
+@media(max-width:768px){
+
+#quizIntro,
+#quizWelcome{
+justify-content:flex-start;
+padding-top:35px;      /* Adjust this value if needed */
+padding-bottom:30px;
+overflow-y:auto;
+}
+
+.quizBigTitle{
+
+font-size:42px;
+
+}
+
+.quizShowTitle{
+
+font-size:30px;
+
+}
+
+.quizText{
+
+font-size:20px;
+line-height:1.7;
+
+}
+
+.tapBegin{
+
+font-size:14px;
+
+}
+
+}
+
+/* =========================
+   QUIZ SECTION
+========================= */
+
+#quizPage{
+
+display:none;
+min-height:100vh;
+width:100%;
+background:#f2aac2;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+padding:20px;
+box-sizing:border-box;
+
+}
+
+/* EACH QUESTION */
+
+.quizScreen{
+
+display:none;
+
+min-height:100vh;
+
+width:100%;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+text-align:center;
+
+animation:fadeQuiz .5s ease;
+
+}
+
+.quizScreen.active{
+
+display:flex;
+
+}
+
+/* TITLE */
+
+.questionTitle{
+
+font-size:34px;
+
+font-weight:700;
+
+line-height:1.5;
+
+color:#8e44ad;
+
+max-width:750px;
+
+margin-bottom:35px;
+
+padding-left:15px;
+padding-right:15px;
+
+}
+
+/* OPTIONS */
+
+.options{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+width:100%;
+
+max-width:420px;
+
+}
+
+/* MCQ BUTTONS */
+
+.quizOption,
+.otherBtn{
+
+padding:16px;
+
+font-size:22px;
+
+font-weight:600;
+
+border:none;
+
+border-radius:40px;
+
+cursor:pointer;
+
+background:white;
+
+color:purple;
+
+transition:.25s;
+
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+
+}
+
+.quizOption:hover,
+.otherBtn:hover{
+
+transform:scale(1.03);
+
+background:#ffe5ef;
+
+}
+
+/* SELECTED OPTION */
+
+.quizOption.selected,
+.otherBtn.selected{
+
+background:#8e44ad;
+
+color:white;
+
+}
+
+/* TEXT BOX */
+
+.quizInput,
+.otherInput{
+
+margin-top:25px;
+
+width:100%;
+
+max-width:600px;
+
+height:170px;
+
+padding:15px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:18px;
+
+resize:none;
+
+outline:none;
+
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+}
+
+/* NEXT BUTTON */
+
+.nextQuestion{
+
+margin-top:25px;
+
+padding:15px 40px;
+
+font-size:22px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:40px;
+
+cursor:pointer;
+
+background:#2ecc71;
+
+color:white;
+
+transition:.25s;
+
+}
+
+.nextQuestion:hover{
+
+transform:scale(1.05);
+
+}
+
+/* THANK YOU PAGE */
+
+.finishText{
+
+font-size:26px;
+
+line-height:1.8;
+
+max-width:700px;
+
+color:purple;
+
+}
+
+/* FADE ANIMATION */
+
+@keyframes fadeQuiz{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.questionTitle{
+
+font-size:26px;
+
+margin-top:0;
+
+}
+
+.options{
+
+max-width:95%;
+
+}
+
+.quizOption,
+.otherBtn{
+
+font-size:18px;
+
+padding:14px;
+
+}
+
+.quizInput,
+.otherInput{
+
+width:95%;
+
+height:150px;
+
+font-size:18px;
+
+}
+
+.nextQuestion{
+
+font-size:18px;
+
+padding:14px 28px;
+
+}
+
+.finishText{
+
+font-size:20px;
+
+line-height:1.7;
+
+}
+
+}
+#quizPage{
+width:100%;
+}
+
+@media(max-width:768px){
+
+    .quizScreen{
+        justify-content:flex-start;
+        align-items:center;
+        padding-top:30px;
+        padding-bottom:40px;
+        overflow-y:auto;
+    }
+
+    .questionTitle{
+        margin-top:0;
+    }
+
+}
+/* =========================
+   QUIZ POPUP
+========================= */
+
+.popupOverlay{
+
+position:fixed;
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.65);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+
+padding:20px;
+
+}
+
+.popupBox{
+
+background:white;
+
+width:min(500px,95%);
+
+padding:30px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+animation:popupShow .35s ease;
+
+}
+
+#stubbornPopupText{
+
+font-size:22px;
+
+line-height:1.7;
+
+color:#8e44ad;
+
+white-space:pre-line;
+
+margin-bottom:25px;
+
+}
+
+#popupNextBtn{
+
+padding:14px 35px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:40px;
+
+background:#8e44ad;
+
+color:white;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+#popupNextBtn:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes popupShow{
+
+from{
+
+opacity:0;
+transform:scale(.8);
+
+}
+
+to{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+@media(max-width:768px){
+
+#stubbornPopupText{
+
+font-size:18px;
+
+}
+
+#popupNextBtn{
+
+font-size:18px;
+
+}
+
+}
+/* =========================
+   QUIZ BREAK POPUP
+========================= */
+
+.quizPopup{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.6);
+
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+
+}
+
+.quizPopupBox{
+
+background:white;
+
+width:90%;
+max-width:500px;
+
+padding:35px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+animation:popupZoom .35s ease;
+
+}
+
+.quizPopupBox h2{
+
+color:#8e44ad;
+
+font-size:34px;
+
+margin-bottom:20px;
+
+}
+
+.quizPopupBox p{
+
+font-size:22px;
+
+line-height:1.8;
+
+color:#555;
+
+}
+
+#continueQuizBtn{
+
+margin-top:25px;
+
+padding:15px 35px;
+
+font-size:20px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:40px;
+
+background:#8e44ad;
+
+color:white;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+#continueQuizBtn:hover{
+
+transform:scale(1.05);
+
+}
+
+@keyframes popupZoom{
+
+from{
+
+transform:scale(.7);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+/* =========================
+   STAR RATING
+========================= */
+
+.ratingContainer{
+
+position:relative;
+
+width:90%;
+
+max-width:700px;
+
+margin:45px auto;
+
+height:90px;
+
+}
+
+.ratingLine{
+
+position:absolute;
+
+top:30px;
+
+left:0;
+
+width:100%;
+
+height:6px;
+
+background:#d6b4ff;
+
+border-radius:20px;
+
+}
+
+#ratingStar{
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+font-size:42px;
+
+cursor:grab;
+
+user-select:none;
+
+touch-action:none;
+
+transition:.1s;
+
+}
+
+.ratingNumbers{
+
+position:absolute;
+
+top:55px;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#8e44ad;
+
+}
+
+#ratingValue{
+
+margin-top:35px;
+
+font-size:26px;
+
+font-weight:bold;
+
+color:#8e44ad;
+
+}
+
+/* Final Quiz Screen */
+#quizFinish {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Google Photos Message */
+.memories-surprise {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.memories-surprise p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: white;
+}
+
+/* Video Button */
+#playMemoriesBtn {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4081;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Video */
+#memoriesVideoContainer {
+    width: 100%;
+    text-align: center;
+}
+
+#memoriesVideo {
+    width: 90%;
+    max-width: 750px;
+    max-height: 75vh;
+    border-radius: 15px;
+    object-fit: contain;
+}
+/* =====================================
+   GOOGLE PHOTOS VIDEO SURPRISE
+===================================== */
+
+#memoriesIntro {
+    text-align: center;
+    padding: 15px;
+}
+
+#playMemoriesBtn {
+    margin-top: 20px;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #a83279;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#playMemoriesBtn:hover {
+    transform: scale(1.05);
+    background: #87245f;
+}
+
+
+/* VIDEO CONTAINER */
+
+#memoriesVideoContainer {
+    display: none;
+    width: 100%;
+    max-width: 750px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#memoriesVideo {
+    width: 100%;
+    max-height: 65vh;
+    border-radius: 12px;
+    background: black;
+}
+
+
+/* =====================================
+   AFTER VIDEO MESSAGES
+===================================== */
+
+#afterVideoTransition {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    max-width: 750px;
+    margin: 15px auto;
+}
+
+/* Same colour as earlier website text */
+#memoryMessage,
+#letterIntro {
+    display: none;
+    opacity: 0;
+    color: #6b174d;
+    font-size: 20px;
+    line-height: 1.7;
+    font-weight: 500;
+    text-align: center;
+    animation: messageFadeIn 1.2s ease forwards;
+}
+
+#letterIntro p {
+    margin: 12px 0;
+}
+
+#openLetterBtn {
+    display: none;
+    margin: 25px auto 10px;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #a83279;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    animation: messageFadeIn 1s ease forwards;
+}
+
+
+/* =====================================
+   BIRTHDAY LETTER DESIGN
+===================================== */
+
+#birthdayLetter {
+    display: none;
+    width: 100%;
+    max-width: 850px;
+    margin: 15px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* Main birthday heading */
+#letterHeading {
+    color: #e53935;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 25px;
+}
+
+/* Letter body */
+#birthdayMessage {
+    color: #6b174d;
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 500;
+
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    max-height: 75vh;
+    overflow-y: auto;
+
+    padding: 20px;
+    background: rgba(255,255,255,0.45);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+
+/* FADE ANIMATION */
+@keyframes messageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+    #memoryMessage,
+    #letterIntro {
+        font-size: 17px;
+    }
+
+    #letterHeading {
+        font-size: 14px;
+    }
+
+    #birthdayLetter {
+         width: 96%;  
+         padding: 10px;
+    }
+
+    #birthdayMessage {
+        width: 100%;
+        height: 75vh;
+        max-height: 75vh;
+        box-sizing: border-box;
+        padding: 15px;
+        font-size: 13px;
+        line-height: 1.5;
+        overflow-y: auto;
+    }
+
+}
+#birthdayLetter {
+    display: none;
+    width: 100%;
+    max-width: 1050px;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+#letterHeading {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #e53935 !important;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center !important;
+    margin: 10px 0 25px;
+}
+
+#birthdayMessage {
+    text-align: left !important;
+    white-space: pre-wrap;
+    color: #6b174d;
+    font-size: 14px;
+    line-height: 1.5;
+}
