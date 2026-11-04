@@ -1432,17 +1432,24 @@ Life has a way of taking people onto different paths, and sometimes the kindest 
 
 Thank you for being the person you are. Apart from those nice seniors, you are one of the greatest people Bharati Fire brought into my life, and I'll always be grateful for that.
 
-I made this little birthday surprise with only one intention—to make you smile, even if it's just for a few moments. If it managed to do that, then it has already fulfilled its purpose.
+I made this little birthday surprise with only one intention—to irritate you a little bit 🤏😜😜😅
 
-May your smile never fade, your heart always stays full, and your life be filled with love, good health, success, happiness, billions of beautiful memories and a good people.
+Okk jokes apart.... 
+
+for one last time.... 
 
 Happpppiiiiieeeesssssttttt Birthday, Anuja! ❤️
+
+May your smile never fade, your heart always stays full, and your life be filled with love, good health, success, happiness, billions of beautiful memories and a good people.
 
 Wishing you nothing but the very best—for today, for this year, and for all the years to come.
 
 Take care of yourself, always…
 
 Keep smiling, always…
+
+and a GOODBYE...👋👋👋 😊
+
 
 With warm wishes,
 
