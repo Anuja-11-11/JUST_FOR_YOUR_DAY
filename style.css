@@ -1865,3 +1865,47 @@ color:#8e44ad;
     font-size: 14px;
     line-height: 1.5;
 }
+
+/* FINAL DART IMAGE ON REVENGE REPORT */
+
+#finalDartPhoto {
+    display: block;
+    width: 240px;
+    max-width: 75vw;
+    max-height: 30vh;
+    object-fit: contain;
+    margin: 15px auto;
+}
+
+/* Adjust report layout for mobile */
+
+@media (max-width: 768px) {
+
+    #revengeReport {
+        justify-content: center;
+        padding: 15px 10px;
+        gap: 8px;
+    }
+
+    #finalScoreText {
+        font-size: 25px;
+        margin-top: 5px;
+    }
+
+    #painLevelText {
+        font-size: 21px;
+        margin-top: 5px;
+    }
+
+    #finalDartPhoto {
+        width: 210px;
+        max-width: 70vw;
+        max-height: 27vh;
+        margin: 8px auto;
+    }
+
+    #revengeReport p {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+}
