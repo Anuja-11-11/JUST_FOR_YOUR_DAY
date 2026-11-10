@@ -239,7 +239,7 @@ document.getElementById("b3"),
 document.getElementById("b4")
 ];
 
-const words = ["YOU","ARE","TRULY","SPECIAL ❤️"];
+const words = ["LET'S","BEGIN","THE BIRTHDAY","PARTY"];
 
 balloons.forEach((b, index)=>{
 
@@ -274,7 +274,7 @@ let specialMsg = document.createElement("div");
 
 specialMsg.id = "specialMsg";
 
-specialMsg.innerHTML = "YOU ARE TRULY SPECIAL <br> ANU... ❤️";
+specialMsg.innerHTML = "LET'S BEGIN THE BIRTHDAY PARTY <br> ANU... ❤️";
 
 specialMsg.style.position = "fixed";
 specialMsg.style.top = "50%";
@@ -778,59 +778,72 @@ throwDart();
 /* =========================
    THROW DART (LOGIC SAME)
 ========================= */
+
+
 function throwDart(){
 
-let rand=Math.random();
+    let dartBoardImage = document.getElementById("dartBoard");
+    let imageRect = dartBoardImage.getBoundingClientRect();
 
-let score=0;
-let message="";
+    let boardWidth = imageRect.width;
+    let boardHeight = imageRect.height;
 
-let boardSize = board.offsetWidth;
+    // Face centre
+    let faceX = boardWidth * 0.508;
+    let faceY = boardHeight * 0.72;
 
-let x=boardSize/2;
-let y=boardSize/2;
+ // Keep all dart hits around the face
+    let x = faceX + (Math.random() * 20 - 8);
+    let y = faceY + (Math.random() * 20 - 8);
 
-if(rand<0.45){
-score=100;
-message="OUCH 😭";
-x=boardSize*0.47 + Math.random()*20;
-y=boardSize*0.47 + Math.random()*20;
-}
-else if(rand<0.65){
-score=80;
-message="I saw that coming 😅";
-x=boardSize*0.35 + Math.random()*60;
-y=boardSize*0.35 + Math.random()*60;
-}
-else if(rand<0.80){
-score=50;
-message="Not bad 😜";
-x=boardSize*0.25 + Math.random()*100;
-y=boardSize*0.25 + Math.random()*100;
-}
-else if(rand<0.90){
-score=20;
-message="You almost got me 😆";
-x=40 + Math.random()*(boardSize-80);
-y=40 + Math.random()*(boardSize-80);
-}
-else{
-score=0;
-message="Target escaped 😂";
-x=Math.random()*boardSize;
-y=Math.random()*boardSize;
+    // Calculate distance from face centre
+    let dx = x - faceX;
+    let dy = y - faceY;
+
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    let score;
+    let message;
+
+    // Scoring based on distance from face
+    if(distance <= boardWidth * 0.10){
+
+        score = 100;
+        message = "OUCH 😭";
+
+    }
+    else if(distance <= boardWidth * 0.20){
+
+        score = 80;
+        message = "I saw that coming 😅";
+
+    }
+    else if(distance <= boardWidth * 0.32){
+
+        score = 50;
+        message = "Not bad 😜";
+
+    }
+    else{
+
+        score = 20;
+        message = "You almost got me 😆";
+
+    }
+
+    animateDartToTarget(x, y, score, message);
+
 }
 
-animateDartToTarget(x,y,score,message);
-
-}
 
 function animateDartToTarget(x,y,score,message){
 
-let boardRect = board.getBoundingClientRect();
+    // Use the actual image position, not the container
+    let dartBoardImage = document.getElementById("dartBoard");
+    let imageRect = dartBoardImage.getBoundingClientRect();
 
-let targetX = boardRect.left + x;
-let targetY = boardRect.top + y;
+let targetX = imageRect.left + x;
+let targetY = imageRect.top + y;
 
 readyDart.style.transition =
 "all .35s cubic-bezier(.17,.67,.24,1.22)";
@@ -849,7 +862,7 @@ board.animate([
 {transform:"scale(1.03)"},
 {transform:"scale(1)"}
 ],{
-duration:150
+duration:250
 });
 
 totalScore += score;
